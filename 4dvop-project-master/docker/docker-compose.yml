@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  web:
+    container_name: website
+    image: php:apache
+    environment:
+     - USERNAME=toto
+     - PASSWORD=python
+    volumes:
+     - ./website:/var/www/html
+    depends_on:
+     - 4dvop_simple_api
+    ports:
+     - "8080:80"
+  4dvop_simple_api:
+    container_name: 4dvop_simple_api
+    image: 192.168.64.40:4000/4dvop_simple_api
+    volumes:
+     - ./simple_api/student_age.json:/data/student_age.json
+    ports:
+     - "5000:5000"

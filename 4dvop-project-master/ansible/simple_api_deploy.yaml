@@ -1,0 +1,12 @@
+- hosts: 4dvop-cen7-app
+  become: true
+  tasks:
+  - name: "Copie du repertoire docker"
+    copy:
+      src: /opt/bitnami/jenkins/jenkins_home/workspace/4DVOP/docker
+      dest: /home/max
+
+  - name: Déploiement du docker-compose
+    shell:
+      cmd: "docker-compose -f docker-compose.yml up -d "
+      chdir: /home/max/docker
